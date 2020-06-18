@@ -288,11 +288,13 @@ function startRecording() {
   recordedBlobs = [];
   var options = {
     mimeType: 'video/webm;codecs=vp9',
+    videoBitsPerSecond : 2500000,
   };
   if (!MediaRecorder.isTypeSupported(options.mimeType)) {
     console.error(`${options.mimeType} is not Supported`);
     options = {
       mimeType: 'video/webm;codecs=vp8',
+      videoBitsPerSecond : 2500000,
     };
     if (!MediaRecorder.isTypeSupported(options.mimeType)) {
       console.error(`${options.mimeType} is not Supported`);
