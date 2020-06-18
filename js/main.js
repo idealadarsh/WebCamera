@@ -318,7 +318,7 @@ function startRecording() {
   //   console.log('Recorder stopped: ', event);
   // };
   mediaRecorder.ondataavailable = handleDataAvailable;
-  mediaRecorder.start(10); // collect 10ms of data
+  mediaRecorder.start(); // collect 10ms of data
 }
 
 function stopRecording() {
