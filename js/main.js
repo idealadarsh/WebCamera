@@ -236,14 +236,14 @@ function initCameraStream() {
   var constraints = {
     audio: false,
     video: {
-      width: {
-        ideal: size
-      },
-      height: {
-        ideal: size
-      },
-      // width: { min: 176, ideal: window.innerWidth, max: 1920 },
-      // height: { min: 144, ideal: window.innerHeight, max: 1080 },
+      // width: {
+      //   ideal: size
+      // },
+      // height: {
+      //   ideal: size
+      // },
+      width: { min: 176, ideal: window.innerWidth, max: 1920 },
+      height: { min: 144, ideal: window.innerHeight, max: 1080 },
       facingMode: currentFacingMode,
     },
   };
@@ -318,7 +318,7 @@ function startRecording() {
   //   console.log('Recorder stopped: ', event);
   // };
   mediaRecorder.ondataavailable = handleDataAvailable;
-  mediaRecorder.start(); // collect 1000ms of data
+  mediaRecorder.start(10); // collect 10ms of data
 }
 
 function stopRecording() {
