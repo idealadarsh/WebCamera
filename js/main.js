@@ -13,7 +13,7 @@ var mediaRecorder;
 var recordedBlobs;
 var sourceBuffer;
 var recording = 'false';
-var playing = false;
+var playing = 'false';
 var torchSupported = false;
 var flashLightOn = false;
 
@@ -104,12 +104,15 @@ function initCameraUI() {
       recording = 'done';
       stopRecording();
       startRecordingUI();
+      playing = 'ready';
       recordButton.classList.remove('active');
+      playButton.classList.remove('disabled');
       changeClass(recordIcon, 'fa-stop', 'fa-redo-alt');
     } else if (recording == 'done') {
       recording = 'false';
-      playing = false;
+      playing = 'false';
       initCameraStream();
+      playButton.classList.add('disabled');
       changeClass(recordIcon, 'fa-redo-alt', 'fa-video');
       changeClass(playIcon, 'fa-check', 'fa-play');
     }
@@ -117,10 +120,10 @@ function initCameraUI() {
 
   playButton.addEventListener('click', () => {
     var playIcon = playButton.getElementsByTagName('svg')[0];
-    if (playing == true) {
+    if (playing == 'true') {
       alert('Recording Done');
-    } else {
-      playing = true;
+    } else if(playing == 'ready') {
+      playing = 'true';
       changeClass(playIcon, 'fa-play', 'fa-check');
       var superBuffer = new Blob(recordedBlobs, {
         type: 'video/webm',
@@ -315,7 +318,7 @@ function startRecording() {
   //   console.log('Recorder stopped: ', event);
   // };
   mediaRecorder.ondataavailable = handleDataAvailable;
-  mediaRecorder.start(1000); // collect 1000ms of data
+  mediaRecorder.start(); // collect 1000ms of data
 }
 
 function stopRecording() {
