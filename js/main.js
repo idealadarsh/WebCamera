@@ -242,8 +242,8 @@ function initCameraStream() {
       // height: {
       //   ideal: size
       // },
-      width: { min: 176, ideal: window.innerWidth, max: 1920 },
-      height: { min: 144, ideal: window.innerHeight, max: 1080 },
+      width: { min: 176, ideal: 1280, max: 1920 },
+      height: { min: 144, ideal: 720, max: 1080 },
       facingMode: currentFacingMode,
     },
   };
