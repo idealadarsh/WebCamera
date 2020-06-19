@@ -287,28 +287,28 @@ function handleDataAvailable(event) {
 function startRecording() {
   recordedBlobs = [];
   var options = {
-    mimeType: 'video/webm;codecs=vp9',
-    videoBitsPerSecond : 2500000,
+    mimeType: 'video/webm;codecs=vp9,vp8',
+    bitsPerSecond: 100000, //videoBitsPerSecond : 2500000,
   };
-  if (!MediaRecorder.isTypeSupported(options.mimeType)) {
-    console.error(`${options.mimeType} is not Supported`);
-    options = {
-      mimeType: 'video/webm;codecs=vp8',
-      videoBitsPerSecond : 2500000,
-    };
-    if (!MediaRecorder.isTypeSupported(options.mimeType)) {
-      console.error(`${options.mimeType} is not Supported`);
-      options = {
-        mimeType: 'video/webm',
-      };
-      if (!MediaRecorder.isTypeSupported(options.mimeType)) {
-        console.error(`${options.mimeType} is not Supported`);
-        options = {
-          mimeType: '',
-        };
-      }
-    }
-  }
+  // if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+  //   console.error(`${options.mimeType} is not Supported`);
+  //   options = {
+  //     mimeType: 'video/webm;codecs=vp8',
+  //     videoBitsPerSecond : 2500000,
+  //   };
+  //   if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+  //     console.error(`${options.mimeType} is not Supported`);
+  //     options = {
+  //       mimeType: 'video/webm',
+  //     };
+  //     if (!MediaRecorder.isTypeSupported(options.mimeType)) {
+  //       console.error(`${options.mimeType} is not Supported`);
+  //       options = {
+  //         mimeType: '',
+  //       };
+  //     }
+  //   }
+  // }
 
   try {
     mediaRecorder = new MediaRecorder(window.stream, options);
@@ -320,7 +320,7 @@ function startRecording() {
   //   console.log('Recorder stopped: ', event);
   // };
   mediaRecorder.ondataavailable = handleDataAvailable;
-  mediaRecorder.start(); // collect 10ms of data
+  mediaRecorder.start(100); // collect 100ms of data
 }
 
 function stopRecording() {
