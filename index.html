@@ -9,19 +9,21 @@
 </head>
 
 <body>
-  <div id="container">
+  <div id="recorder_container">
     <div id="vid_container">
       <video id="video" autoplay playsinline></video>
       <div id="video_overlay"></div>
+      <p id="instruction">Tap <i class="fas fa-video"></i> to start recording</p>
     </div>
     <div id="gui_controls">
-      <div class="control-btn disabled" id="flashBtn"><i class="fas fa-lightbulb"></i></div>
+      <div class="control-btn disabled" id="flashBtn"><i class="fas fa-bolt"></i></div>
       <div class="control-btn disabled" id="switchCameraBtn"><i class="fas fa-sync-alt"></i></div>
       <div class="control-btn" id="takeVideoBtn"><i class="fas fa-video"></i></div>
       <div class="control-btn disabled" id="playBtn"><i class="fas fa-play"></i></div>
       <div class="control-btn" id="fullScreenBtn"><i class="fas fa-arrows-alt"></i></div>
     </div>
   </div>
+  
   <script src="js/adapter.min.js"></script>
   <script src="js/screenfull.min.js"></script>
   <script src="js/howler.core.min.js"></script>

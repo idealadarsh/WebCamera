@@ -16,6 +16,7 @@ var recording = 'false';
 var playing = 'false';
 var torchSupported = false;
 var flashLightOn = false;
+var instruction;
 
 function deviceCount() {
   return new Promise(function (resolve) {
@@ -90,6 +91,7 @@ function initCameraUI() {
   switchCameraButton = document.getElementById('switchCameraBtn');
   flashLightButton = document.getElementById('flashBtn');
   playButton = document.getElementById('playBtn');
+  instruction = document.getElementById('instruction');
 
   recordButton.addEventListener('click', () => {
     var recordIcon = recordButton.getElementsByTagName('svg')[0];
@@ -100,6 +102,7 @@ function initCameraUI() {
       startRecording();
       changeClass(recordIcon, 'fa-video', 'fa-stop');
       recordButton.classList.add('active');
+      instruction.innerHTML = 'Tap <i class="fas fa-stop"></i> to stop recording';
     } else if (recording == 'true') {
       recording = 'done';
       stopRecording();
@@ -108,13 +111,15 @@ function initCameraUI() {
       recordButton.classList.remove('active');
       playButton.classList.remove('disabled');
       changeClass(recordIcon, 'fa-stop', 'fa-redo-alt');
+      instruction.innerHTML = 'Tap <i class="fas fa-play"></i> to play video';
     } else if (recording == 'done') {
       recording = 'false';
       playing = 'false';
       initCameraStream();
-      playButton.classList.add('disabled');
+      changeClass(playButton, 'active', 'disabled');
       changeClass(recordIcon, 'fa-redo-alt', 'fa-video');
       changeClass(playIcon, 'fa-check', 'fa-play');
+      instruction.innerHTML = 'Tap <i class="fas fa-video"></i> to start recording';
     }
   });
 
@@ -133,6 +138,8 @@ function initCameraUI() {
       video.src = window.URL.createObjectURL(superBuffer);
       video.controls = false;
       video.play();
+      instruction.innerHTML = 'Tap <i class="fas fa-check"></i> to upload or <i class="fas fa-redo-alt"></i> to retake video';
+      playButton.classList.add('active');
     }
   });
 
@@ -147,6 +154,7 @@ function initCameraUI() {
           })
           .catch(e => console.log(e));
         flashLightOn = false;
+        flashLightButton.classList.remove('active');
       } else {
         track.applyConstraints({
             advanced: [{
@@ -155,6 +163,7 @@ function initCameraUI() {
           })
           .catch(e => console.log(e));
         flashLightOn = true;
+        flashLightButton.classList.add('active');
       }
     }
   });
@@ -224,6 +233,7 @@ function initCameraUI() {
 }
 
 function initCameraStream() {
+
   if (window.stream) {
     window.stream.getTracks().forEach(function (track) {
       //console.log(track);

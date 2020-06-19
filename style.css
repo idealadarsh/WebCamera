@@ -10,6 +10,19 @@ body {
   left: 0;
 }
 
+#instruction {
+  background-color: #151515;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 1em;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+}
+
 #video {
   width: 100%;
   height: 100%;
@@ -33,7 +46,6 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-
   z-index: 10;
   background-color: #111;
 }
@@ -53,9 +65,16 @@ body {
   color: grey;
 }
 
-.control-btn.active {
-  /* background-color: rgba(255, 255, 255, 0.8); */
+#takeVideoBtn.active {
   background-color: #DC143C;
+}
+
+#flashBtn.active {
+  background-color: yellow;
+}
+
+#playBtn.active {
+  background-color: greenyellow;
 }
 
 .control-btn.control-btn.disabled:hover {
