@@ -231,19 +231,19 @@ function initCameraStream() {
     });
   }
 
-  var size = 1280;
+  var size = {w: 1920, h: 1080};
 
   var constraints = {
     audio: false,
     video: {
-      // width: {
-      //   ideal: size
-      // },
-      // height: {
-      //   ideal: size
-      // },
-      width: { min: 176, ideal: 1280, max: 1920 },
-      height: { min: 144, ideal: 720, max: 1080 },
+      width: {
+        ideal: size.w
+      },
+      height: {
+        ideal: size.h
+      },
+      // width: { min: 176, ideal: 1280, max: 1920 },
+      // height: { min: 144, ideal: 720, max: 1080 },
       facingMode: currentFacingMode,
     },
   };
