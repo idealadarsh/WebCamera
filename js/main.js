@@ -231,7 +231,7 @@ function initCameraStream() {
     });
   }
 
-  var size = {w: 1920, h: 1080};
+  var size = {w: 3840, h: 2160};
 
   var constraints = {
     audio: false,
